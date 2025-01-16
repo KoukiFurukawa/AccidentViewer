@@ -33,14 +33,22 @@ function App() {
     }
 
     const radius = 10
-    const peplex = 30
-    const pepley = 30
+    const peplex = 30 //取得値入力予定地
+    const pepley = 30 //取得値入力予定地
 
     ctx.beginPath()
     ctx.arc(peplex, pepley, radius, 0, Math.PI * 2)
     ctx.fillStyle = 'red'
     ctx.fill()
     ctx.closePath()
+
+    const lrWidth = 30
+    const lrHeight =30
+    const liftx = 90 //取得値入力予定地
+    const lifty = 70 //取得値入力予定地
+
+    ctx.fillStyle = '#0067C0'
+    ctx.fillRect(liftx, lifty, lrWidth, lrHeight)
 
     setPng(canvasElem.toDataURL())
   }, [])
