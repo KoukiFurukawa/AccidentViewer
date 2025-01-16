@@ -2,12 +2,20 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import coordinateDate from './coordinate-date.json';
 const width = 1000
 const height = 400
 const smallRects = 10
-const smallCircles = 15
 
 function App() {
+  console.log(coordinateDate);
+
+  const json = coordinateDate;
+  let px = json.px
+  let py = json.ly
+  let lx = json.lx
+  let ly = json.ly
+
   const [png, setPng] = useState<string | null>(null)
 
   useEffect(() => {
@@ -36,8 +44,8 @@ function App() {
     }
 
     const radius = 10
-    const peplex = 30 //取得値入力予定地
-    const pepley = 30 //取得値入力予定地
+    const peplex = px //取得値入力予定地
+    const pepley = py //取得値入力予定地
 
     ctx.beginPath()
     ctx.arc(peplex, pepley, radius, 0, Math.PI * 2)
@@ -47,8 +55,8 @@ function App() {
 
     const lrWidth = 30
     const lrHeight =30
-    const liftx = 90 //取得値入力予定地
-    const lifty = 70 //取得値入力予定地
+    const liftx = lx //取得値入力予定地
+    const lifty = ly //取得値入力予定地
 
     ctx.fillStyle = '#0067C0'
     ctx.fillRect(liftx, lifty, lrWidth, lrHeight)
