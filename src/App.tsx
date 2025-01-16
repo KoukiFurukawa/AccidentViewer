@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react' 
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-const width =1000
-const height =400
+const width = 1000
+const height = 400
 const smallRects = 10
 const smallCircles = 15
 
@@ -16,13 +16,16 @@ function App() {
     canvasElem.height = height
     const ctx = canvasElem.getContext('2d')
 
-    // draw
+    if (!ctx) {
+      throw new Error('2D context could not be obtained. Your browser might not support it.');
+    }
 
+    // draw
     ctx.clearRect(0, 0, width, height)
     ctx.fillStyle = '#f7f7f7'
     ctx.fillRect(0, 0, width, height)
 
-    for (let i = 0; i < smallRects; i++ ) {
+    for (let i = 0; i < smallRects; i++) {
       const rectWidth = 75
       const rectHeight = 300
       const x = 150 * i
