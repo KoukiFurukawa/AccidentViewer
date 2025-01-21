@@ -3,12 +3,18 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import coordinateDate from './coordinate-date.json';
+import { CoordinateInfo } from './CoordinateInfo';
 const width = 1000
 const height = 400
 const smallRects = 10
 
 function App() {
   console.log(coordinateDate);
+  // console.log(CoordinateInfo);
+
+  CoordinateInfo.forEach((data) => {
+    console.log(data.bboxes);
+  })
 
   const json = coordinateDate;
   let px = json.px
@@ -62,7 +68,55 @@ function App() {
     ctx.fillRect(liftx, lifty, lrWidth, lrHeight)
 
     setPng(canvasElem.toDataURL())
+    
   }, [])
+
+  const DrawCoordinates = async () => {
+
+    // 初期設定 
+    const canvasElem = document.createElement('canvas')
+    canvasElem.width = width
+    canvasElem.height = height
+    const ctx = canvasElem.getContext('2d')
+    const radius = 10
+    const lrWidth = 30
+    const lrHeight =30
+
+    if (!ctx) {
+      throw new Error('2D context could not be obtained. Your browser might not support it.');
+    }
+
+    ctx.clearRect(0, 0, width, height)
+    ctx.fillStyle = '#f7f7f7'
+    ctx.fillRect(0, 0, width, height)
+
+    for (let i = 0; i < smallRects; i++) {
+      const rectWidth = 75
+      const rectHeight = 300
+      const x = 150 * i
+      const y = 50
+
+      ctx.fillStyle = '#40c25c'
+      ctx.fillRect(x, y, rectWidth, rectHeight)
+    }
+    
+
+    CoordinateInfo.forEach((data, i) => {
+
+      data.bboxes.forEach((coordinateDate,j) => {
+        // 人間のとき
+        if (data.classIds[j] == 0) {
+          coordinateDate.
+        }
+        // それ以外の時
+        else
+        {
+
+        }
+      })
+    });
+    setPng(canvasElem.toDataURL())
+  }
 
   return (
     <div>
@@ -73,6 +127,7 @@ function App() {
           <img alt="icon" src={png} />
         </div>
       )}
+      <button type='button' onClick={DrawCoordinates}>過去ログ再生</button>
     </div>
   )
 }
